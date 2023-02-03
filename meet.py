@@ -4,3 +4,5 @@ class Meet:
 		self.records = records
 		self.startDate = startDate
 		self.endDate = endDate
+
+		self.mans = None
