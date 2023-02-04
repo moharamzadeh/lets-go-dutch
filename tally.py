@@ -1,6 +1,7 @@
 import meet
 import record
 import debt
+import man
 
 class Tally:
 	def __init__(self, title):
