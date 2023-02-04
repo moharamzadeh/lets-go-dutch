@@ -20,6 +20,8 @@ class Record:
 		return self.manDebt[man]
 
 	def __contains__(self, man: man.Man):
-		if man in self.mans:
+		mans = self.mans.copy()
+		mans.remove(self.buyer)
+		if man in mans:
 			return True
 		return False
