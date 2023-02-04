@@ -10,11 +10,13 @@ class Record:
 	@property
 	def mans(self):
 		allMan = set(self.manDebt.keys())
-		allMan.add(self.buyer)
 		return allMan
 
 	def __setitem__(self, man: man.Man, amount):
 		self.manDebt[man] = amount
+
+	def __getitem__(self, man: man.Man):
+		return self.manDebt[man]
 
 	def __contains__(self, man: man.Man):
 		if man in self.mans:
