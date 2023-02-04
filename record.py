@@ -25,3 +25,9 @@ class Record:
 		if man in mans:
 			return True
 		return False
+
+	def __repr__(self):
+		result = f"{self.title} ->\t{str(self.buyer)}: "
+		for man in self.manDebt:
+			result += f"{str(man)} {self.manDebt[man]}  "
+		return result
