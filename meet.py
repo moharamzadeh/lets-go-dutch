@@ -7,8 +7,9 @@ class Meet:
 		self.endDate = endDate
 		self.records = list()
 
-	def __call__(self, record: record.Record):
-		self.records.append(record)
+	def __call__(self, *record: record.Record):
+		for r in record:
+			self.records.append(r)
 
 	@property
 	def mans(self):
