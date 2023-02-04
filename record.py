@@ -7,11 +7,11 @@ class Record:
 		self.dateTime = dateTime
 		self.manDebt = dict()
 
-	def __setitem__(self, man: man.Man, amount):
-		self.manDebt[man] = amount
-
 	@property
 	def mans(self):
 		allMan = set(self.manDebt.keys())
 		allMan.add(self.buyer)
 		return allMan
+
+	def __setitem__(self, man: man.Man, amount):
+		self.manDebt[man] = amount
