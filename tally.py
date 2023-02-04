@@ -19,6 +19,17 @@ class Tally:
 			self.__debts.append(value)
 
 	@property
+	def mans(self):
+		mans = set()
+		for meet in self.__meets:
+			mans.update(meet.mans)
+		for record in self.__records:
+			mans.update(record.mans)
+		for debt in self.__debts:
+			mans.update(debt.mans)
+		return mans
+
+	@property
 	def tally(self):
 		pass
 
