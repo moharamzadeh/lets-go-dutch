@@ -16,5 +16,5 @@ class Meet:
 		allMan = set()
 		for record in self.records:
 			allMan.add(record.buyer)
-			allMan.add(record.mans)
+			allMan.update(record.mans)
 		return allMan
