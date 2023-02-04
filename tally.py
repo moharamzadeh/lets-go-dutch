@@ -6,15 +6,15 @@ import man
 class Tally:
 	def __init__(self, title):
 		self.title = title
-		self.meets = list()
-		self.records = list()
-		self.debts = list()
+		self.__meets = list()
+		self.__records = list()
+		self.__debts = list()
 
 	def __setitem__(self, type: str, value):
 		if type == 'meet':
-			self.meets.append(value)
+			self.__meets.append(value)
 		elif type == 'record':
-			self.records.append(value)
+			self.__records.append(value)
 		elif type == 'debt':
 			self.__debts.append(value)
 
