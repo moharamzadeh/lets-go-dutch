@@ -10,12 +10,6 @@ class Meet:
 	def __call__(self, record: record.Record):
 		self.records.append(record)
 
-	def __bool__(self):
-		for record in self.records:
-			if not record:
-				return False
-		return True
-
 	@property
 	def mans(self):
 		allMan = set()
