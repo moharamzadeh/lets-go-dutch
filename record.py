@@ -15,3 +15,8 @@ class Record:
 
 	def __setitem__(self, man: man.Man, amount):
 		self.manDebt[man] = amount
+
+	def __contains__(self, man: man.Man):
+		if man in self.mans:
+			return True
+		return False
