@@ -18,3 +18,9 @@ class Record:
 		if self.status == 'paid':
 			return True
 		return False
+
+	@property
+	def mans(self):
+		allMan = set(self.manDebt.keys())
+		allMan.add(self.buyer)
+		return allMan
