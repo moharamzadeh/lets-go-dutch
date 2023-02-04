@@ -9,8 +9,9 @@ class Record:
 
 	@property
 	def mans(self):
-		allMan = set(self.manDebt.keys())
-		return allMan
+		mans = set(self.manDebt.keys())
+		mans.add(self.buyer)
+		return mans
 
 	def __setitem__(self, man: man.Man, amount):
 		self.manDebt[man] = amount
