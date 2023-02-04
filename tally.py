@@ -16,7 +16,7 @@ class Tally:
 		elif type == 'record':
 			self.records.append(value)
 		elif type == 'debt':
-			self.debts.append(value)
+			self.__debts.append(value)
 
 	@property
 	def tally(self):
