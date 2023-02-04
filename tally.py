@@ -21,3 +21,12 @@ class Tally:
 	@property
 	def tally(self):
 		pass
+
+	@property
+	def records(self):
+		records = list()
+		records.extend(self.__debts)
+		records.extend(self.__records)
+		for meet in self.__meets:
+			records.extend(meet.records)
+		return records
