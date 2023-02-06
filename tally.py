@@ -55,41 +55,46 @@ class Tally:
 		return buyers
 
 	@property
-	def tally(self):
-		tally = list()
+	def tallyList(self):
+		tallyList = list()
 		for person1 in self.persons:
 			for person2 in self.persons:
-				def __shartExist(fromPerson, toPerson, listOfDict: list):
-					for d in listOfDict:
-						if fromPerson is d['from'] and toPerson is d['to']:
-							return True
-					return False
-				if person1 is person2 or __shartExist(person2, person1, tally):
+				if person1 is person2:
 					continue
-				hesab = {'from': person1, 'to': person2, 'amount': self.amount(person1, person2), 'status': 'unpaid'}
-				tally.append(hesab)
-		def toPositiveAmount(listOfDict: list):
-			l = listOfDict.copy()
-			for d in listOfDict:
-				if d['amount'] < 0:
-					person1 = d['from']
-					person2 = d['to']
-					amount = abs(d['amount'])
-					l.remove(d)
-					hesab = {'from': person2, 'to': person1, 'amount': amount, 'status': 'unpaid'}
-					l.append(hesab)
-			return l
-		tally = toPositiveAmount(tally)
-		return tally
+				if self.__isExist(fromPerson=person2, toPerson=person1, tallyList=tallyList):
+					continue
+				tally = {'from': person1, 'to': person2, 'amount': self.amountDebt(person1, person2), 'status': 'unpaid'}
+				tallyList.append(tally)
+		self.__setPositiveAmountDebt(tallyList)
+		return tallyList
 
-	def amount(self, person1: person.Person, person2: person.Person):
+	@staticmethod
+	def __setPositiveAmountDebt(tallyList: list):
+		for tally in tallyList:
+			if tally['amount'] < 0:
+				creditor = tally['from']
+				debtor = tally['to']
+				amount = abs(tally['amount'])
+				tallyList.remove(tally)
+				newTally = {'from': debtor, 'to': creditor, 'amount': amount, 'status': 'unpaid'}
+				tallyList.append(newTally)
+
+	@staticmethod
+	def __isExist(fromPerson: person.Person, toPerson: person.Person, tallyList: list):
+		for tally in tallyList:
+			if fromPerson is tally['from'] and toPerson is tally['to']:
+				return True
+		return False
+
+	def amountDebt(self, person1: person.Person, person2: person.Person):
 		amount = 0
-		records = self.records
-		for record in records:
-			if record.buyer is person2 and person1 in record.users:
-				amount += record.personDebt[person1]
-			elif record.buyer is person1 and person2 in record.users:
-				amount -= record.personDebt[person2]
+		if person1 is person2:
+			return amount
+		for record in self.records:
+			if person1 is record.buyer and person2 in record.users:
+				amount += record.personDebt[person2]
+			elif person2 is record.buyer and person1 in record.users:
+				amount -= record.personDebt[person1]
 		return amount
 
 	@property
@@ -103,6 +108,6 @@ class Tally:
 
 	def __repr__(self):
 		result = ''
-		for d in self.tally:
+		for d in self.tallyList:
 			result += f"{str(d['from'])} to {str(d['to'])}: {d['amount']}\n"
 		return result
