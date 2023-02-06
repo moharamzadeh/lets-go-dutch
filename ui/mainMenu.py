@@ -24,7 +24,93 @@ class Window():
 		self.window.setCentralWidget(self.widget)
 
 	def __createLayout(self):
+		layout = QHBoxLayout()
+		layout.setDirection(QHBoxLayout.RightToLeft)
+		self.widget.setLayout(layout)
+
+
+		self.__createSplitter(layout)
 		self.__createMenuBar()
+
+	def __getTallyList(self):		
+		tallyList = QListWidget()
+		tallyList.insertItem(0, 'انزلی')
+		tallyList.insertItem(1, 'آخر ترم')
+		tallyList.setCurrentRow(0)
+		return tallyList
+
+	def __getMeetList(self):
+		meetList = QListWidget()
+		meetList.insertItem(0, 'شام')
+		meetList.insertItem(1, 'ناهار')
+		meetList.insertItem(2, 'پاساژ')
+		meetList.setCurrentRow(0)
+		return meetList
+
+	def __getRecordList(self):
+		recordList = QListWidget()
+		recordList.insertItem(0, 'پیتزا')
+		recordList.insertItem(1, 'نوشیدنی')
+		recordList.insertItem(2, 'تاکسی')
+		recordList.setCurrentRow(0)
+		return recordList
+
+	def __createSplitter(self, layout: QHBoxLayout):
+		topRight = self.__getTallyList()
+		bottomRight = QVBoxLayout()
+		btn = QPushButton('افزودن')
+		bottomRight.addWidget(btn)
+
+		rightLayout = QVBoxLayout()
+		rightLayout.addWidget(topRight)
+		rightLayout.addLayout(bottomRight)
+
+		rightWidget = QWidget()
+		rightWidget.setLayout(rightLayout)
+		
+
+		centerTop = self.__getMeetList()
+		centerBottom = QTextBrowser()
+		centerBottom.setText(
+			'''
+			عرفان به علی ۱۰۰۰
+			حسین به علی ۲۰۰۰
+			حسین به عرفان ۵۰۰۰
+			'''
+		)
+
+		centerLayout = QVBoxLayout()
+		centerLayout.addWidget(centerTop)
+		centerLayout.addWidget(centerBottom)
+
+		centerWidget = QWidget()
+		centerWidget.setLayout(centerLayout)
+
+
+		leftTop = self.__getRecordList()
+		leftBotton = QTableWidget()
+		leftBotton.setColumnCount(2)
+		leftBotton.setRowCount(20)
+
+		leftLayout = QVBoxLayout()
+		leftLayout.addWidget(leftTop)
+		leftLayout.addWidget(leftBotton)
+
+		leftWidget = QWidget()
+		leftWidget.setLayout(leftLayout)
+
+
+
+		splitter = QSplitter(Qt.Horizontal)
+		splitter.setLayoutDirection(Qt.RightToLeft)
+		splitter.addWidget(rightWidget)
+		splitter.addWidget(centerWidget)
+		splitter.addWidget(leftWidget)
+
+		splitter.setSizes([10, 200, 300])
+
+		layout.addWidget(splitter)
+		
 	
 	def __createMenuBar(self):
 		menu = self.window.menuBar()
