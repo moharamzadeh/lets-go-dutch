@@ -16,7 +16,12 @@ class Window():
 		self.window = QMainWindow()
 		self.window.setWindowTitle('محاسبه دنگ')
 		self.window.showMaximized()
+		self.__createWidget()
 		self.window.show()
+
+	def __createWidget(self):
+		self.widget = QWidget()
+		self.window.setCentralWidget(self.widget)
 
 	def __createLayout(self):
 		self.__createMenuBar()
