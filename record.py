@@ -25,11 +25,6 @@ class Record:
 	def __getitem__(self, person: person.Person):
 		return self.personDebt[person]
 
-	def __contains__(self, person: person.Person):
-		if person in self.users:
-			return True
-		return False
-
 	def __repr__(self):
 		result = f"{self.title} ->\t{str(self.buyer)}: "
 		for person in self.personDebt:
