@@ -29,5 +29,5 @@ class Meet:
 	def buyers(self):
 		buyers = set()
 		for record in self.records:
-			buyers.update(record.buyer)
+			buyers.add(record.buyer)
 		return buyers

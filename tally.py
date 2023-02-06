@@ -51,7 +51,7 @@ class Tally:
 		for meet in self.__meets:
 			buyers.update(meet.buyers)
 		for record in self.__records:
-			buyers.update(record.buyer)
+			buyers.add(record.buyer)
 		return buyers
 
 	@property
