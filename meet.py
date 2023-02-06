@@ -7,14 +7,27 @@ class Meet:
 		self.endDate = endDate
 		self.records = list()
 
-	def addRecord(self, *record: record.Record):
-		for r in record:
-			self.records.append(r)
+	def addRecord(self, *records: record.Record):
+		for record in records:
+			self.records.append(record)
 
 	@property
 	def persons(self):
-		allPerson = set()
+		persons = set()
+		persons.update(self.buyers)
+		persons.update(self.users)
+		return persons
+
+	@property
+	def users(self):
+		users = set()
 		for record in self.records:
-			allPerson.add(record.buyer)
-			allPerson.update(record.persons)
-		return allPerson
+			users.update(record.users)
+		return users
+
+	@property
+	def buyers(self):
+		buyers = set()
+		for record in self.records:
+			buyers.update(record.buyer)
+		return buyers
