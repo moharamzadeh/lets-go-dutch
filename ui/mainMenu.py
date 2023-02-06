@@ -99,8 +99,6 @@ class Window():
 		leftTopTabRecord = self.__getRecordList()
 		leftTopTabDebt = self.__getDebtList()
 
-		leftTopTabRecord = self.__getRecordList()
-
 		leftTop = QTabWidget()
 		leftTop.addTab(leftTopTabRecord, 'رکوردها')
 		leftTop.addTab(leftTopTabDebt, 'بدهی‌ها')
