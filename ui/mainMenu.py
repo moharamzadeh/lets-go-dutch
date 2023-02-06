@@ -27,10 +27,20 @@ class Window():
 		btnNew = file.addAction('New')
 		file.addSeparator()
 		btnExit = file.addAction('Exit')
-		btnExit.triggered.connect(exit)
+		btnExit.triggered.connect(self.__createExitMessage)
 
 		other = menu.addMenu('Help')
 		about = other.addAction('About')
+
+	def __createExitMessage(self):
+		msg = QMessageBox()
+		msg.setIcon(QMessageBox.Warning)
+		msg.setText('می‌خواهید از برنامه خارج شوید؟')
+		msg.setWindowTitle('خروج')
+		msg.layoutDirection()
+		msg.setStandardButtons(QMessageBox.No | QMessageBox.Yes)
+		msg.buttonClicked.connect(exit)
+		retval = msg.exec_()
 
 
 if __name__ == '__main__':
