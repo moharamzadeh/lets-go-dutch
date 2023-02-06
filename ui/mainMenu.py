@@ -39,8 +39,10 @@ class Window():
 		msg.setWindowTitle('خروج')
 		msg.layoutDirection()
 		msg.setStandardButtons(QMessageBox.No | QMessageBox.Yes)
-		msg.buttonClicked.connect(exit)
+
 		retval = msg.exec_()
+		if retval == QMessageBox.Yes:
+			self.window.close()
 
 
 if __name__ == '__main__':
