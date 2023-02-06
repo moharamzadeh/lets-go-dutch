@@ -2,6 +2,7 @@ import meet
 import record
 import debt
 import person
+from typing import overload
 
 class Tally:
 	def __init__(self, title):
@@ -10,13 +11,23 @@ class Tally:
 		self.__records = list()
 		self.__debts = list()
 
-	def __setitem__(self, type: str, value):
-		if type == 'meet':
-			self.__meets.append(value)
-		elif type == 'record':
-			self.__records.append(value)
-		elif type == 'debt':
-			self.__debts.append(value)
+	@overload
+	def importData(self, value: meet.Meet) -> None: ...
+
+	@overload
+	def importData(self, value: debt.Debt) -> None: ...
+
+	@overload
+	def importData(self, value: record.Record) -> None: ...
+
+	def importData(self, value) -> None:
+		if isinstance(value, meet.Meet):
+			return self.__meets.append(value)
+		if isinstance(value, debt.Debt):
+			return self.__debts.append(value)		
+		if isinstance(value, record.Record):
+			return self.__records.append(value)
+		raise ValueError('You must pass Meet or Record or Debt')
 
 	@property
 	def persons(self):
