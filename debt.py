@@ -7,6 +7,3 @@ class Debt(record.Record):
 		self.dateTime = dateTime
 		self.personDebt = dict()
 		self.personDebt[debtor] = amount
-
-	def __setitem__(self):
-		pass
