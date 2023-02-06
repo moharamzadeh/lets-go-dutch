@@ -32,13 +32,27 @@ class Tally:
 	@property
 	def persons(self):
 		persons = set()
-		for meet in self.__meets:
-			persons.update(meet.persons)
-		for record in self.__records:
-			persons.update(record.persons)
-		for debt in self.__debts:
-			persons.update(debt.persons)
+		persons.update(self.buyers)
+		persons.update(self.users)
 		return persons
+
+	@property
+	def users(self):
+		users = set()
+		for meet in self.__meets:
+			users.update(meet.users)
+		for record in self.__records:
+			users.update(record.users)
+		return users
+
+	@property
+	def buyers(self):
+		buyers = set()
+		for meet in self.__meets:
+			buyers.update(meet.buyers)
+		for record in self.__records:
+			buyers.update(record.buyer)
+		return buyers
 
 	@property
 	def tally(self):
