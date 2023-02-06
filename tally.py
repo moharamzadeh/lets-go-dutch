@@ -12,15 +12,15 @@ class Tally:
 		self.__debts = list()
 
 	@overload
-	def importData(self, value: meet.Meet) -> None: ...
+	def addData(self, meet: meet.Meet) -> None: ...
 
 	@overload
-	def importData(self, value: debt.Debt) -> None: ...
+	def addData(self, debt: debt.Debt) -> None: ...
 
 	@overload
-	def importData(self, value: record.Record) -> None: ...
+	def addData(self, record: record.Record) -> None: ...
 
-	def importData(self, value) -> None:
+	def addData(self, value) -> None:
 		if isinstance(value, meet.Meet):
 			return self.__meets.append(value)
 		if isinstance(value, debt.Debt):

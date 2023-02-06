@@ -13,16 +13,20 @@ class Record:
 		persons.add(self.buyer)
 		return persons
 
-	def __setitem__(self, person: person.Person, amount):
+	@property
+	def users(self):
+		users = self.persons.copy()
+		users.remove(self.buyer)
+		return users
+
+	def addData(self, person: person.Person, amount):
 		self.personDebt[person] = amount
 
 	def __getitem__(self, person: person.Person):
 		return self.personDebt[person]
 
 	def __contains__(self, person: person.Person):
-		persons = self.persons.copy()
-		persons.remove(self.buyer)
-		if person in persons:
+		if person in self.users:
 			return True
 		return False
 
