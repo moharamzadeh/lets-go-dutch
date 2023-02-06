@@ -57,12 +57,11 @@ class Window():
 		recordList.setCurrentRow(0)
 		return recordList
 
-	def __getDebtList(self):
-		debtList = QListWidget()
-		debtList.insertItem(0, 'اجاره')
-		debtList.insertItem(1, 'شهریه')
-		debtList.setCurrentRow(0)
-		return debtList
+	def __getDebtTable(self):
+		debtTable = QTableWidget()
+		debtTable.setColumnCount(4)
+		debtTable.setRowCount(20)
+		return debtTable
 
 	def __createSplitter(self, layout: QHBoxLayout):
 		topRight = self.__getTallyList()
@@ -97,14 +96,14 @@ class Window():
 		leftBotton.setRowCount(20)
 
 		leftTopTabRecord = self.__getRecordList()
-		leftTopTabDebt = self.__getDebtList()
+		leftTopTabbleDebt = self.__getDebtTable()
 
-		leftTop = QTabWidget()
-		leftTop.addTab(leftTopTabRecord, 'رکوردها')
-		leftTop.addTab(leftTopTabDebt, 'بدهی‌ها')
-		leftTop.setCurrentWidget(leftTopTabRecord)
+		leftTopLayout = QHBoxLayout()
+		leftTopLayout.addWidget(leftTopTabRecord)
+		leftTopLayout.addWidget(leftTopTabbleDebt)
 
-
+		leftTop = QWidget()
+		leftTop.setLayout(leftTopLayout)
 
 		leftLayout = QVBoxLayout()
 		leftLayout.addWidget(leftTop)
