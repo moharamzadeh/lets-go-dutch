@@ -92,9 +92,9 @@ class Tally:
 			return amount
 		for record in self.records:
 			if person1 is record.buyer and person2 in record.users:
-				amount += record.personDebt[person2]
+				amount += record.userDebt[person2]
 			elif person2 is record.buyer and person1 in record.users:
-				amount -= record.personDebt[person1]
+				amount -= record.userDebt[person1]
 		return amount
 
 	@property

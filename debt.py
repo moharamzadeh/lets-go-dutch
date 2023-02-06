@@ -5,5 +5,5 @@ class Debt(record.Record):
 		self.title = title
 		self.buyer = creditor
 		self.dateTime = dateTime
-		self.personDebt = dict()
-		self.personDebt[debtor] = amount
+		self.userDebt = dict()
+		self.userDebt[debtor] = amount
