@@ -92,7 +92,7 @@ class Window():
 
 
 		leftBotton = QTableWidget()
-		leftBotton.setColumnCount(2)
+		leftBotton.setColumnCount(3)
 		leftBotton.setRowCount(20)
 
 		leftTopTabRecord = self.__getRecordList()
