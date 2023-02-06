@@ -16,6 +16,8 @@ class Window():
 		self.window = QMainWindow()
 		self.window.setWindowTitle('محاسبه دنگ')
 		self.window.showMaximized()
+		self.window.setMinimumHeight(400)
+		self.window.setMinimumWidth(600)
 		self.__createWidget()
 		self.window.show()
 
@@ -49,17 +51,32 @@ class Window():
 
 	def __getRecordList(self):
 		recordList = QListWidget()
-		recordList.insertItem(0, 'پیتزا')
+		recordList.insertItem(0, 'پیتزا\t(خریدار: عرفان)')
 		recordList.insertItem(1, 'نوشیدنی')
 		recordList.insertItem(2, 'تاکسی')
 		recordList.setCurrentRow(0)
 		return recordList
 
+	def __getDebtList(self):
+		debtList = QListWidget()
+		debtList.insertItem(0, 'اجاره')
+		debtList.insertItem(1, 'شهریه')
+		debtList.setCurrentRow(0)
+		return debtList
+
 	def __createSplitter(self, layout: QHBoxLayout):
 		topRight = self.__getTallyList()
 		bottomRight = QVBoxLayout()
-		btn = QPushButton('افزودن')
-		bottomRight.addWidget(btn)
+
+		btnAdd = QPushButton('افزودن حساب')
+		bottomRight.addWidget(btnAdd)
+
+		btnAddPerson = QPushButton('ایجاد فرد')
+		bottomRight.addWidget(btnAddPerson)
+
+		btnComput = QPushButton('محاسبه')
+		bottomRight.addWidget(btnComput)
+
 
 		rightLayout = QVBoxLayout()
 		rightLayout.addWidget(topRight)
@@ -69,28 +86,27 @@ class Window():
 		rightWidget.setLayout(rightLayout)
 		
 
-		centerTop = self.__getMeetList()
-		centerBottom = QTextBrowser()
-		centerBottom.setText(
-			'''
-			عرفان به علی ۱۰۰۰
-			حسین به علی ۲۰۰۰
-			حسین به عرفان ۵۰۰۰
-			'''
-		)
+		centerWidget = self.__getMeetList()
 
 		centerLayout = QVBoxLayout()
-		centerLayout.addWidget(centerTop)
-		centerLayout.addWidget(centerBottom)
-
-		centerWidget = QWidget()
-		centerWidget.setLayout(centerLayout)
+		centerLayout.addWidget(centerWidget)
 
 
-		leftTop = self.__getRecordList()
 		leftBotton = QTableWidget()
 		leftBotton.setColumnCount(2)
 		leftBotton.setRowCount(20)
+
+		leftTopTabDebt = self.__getRecordList()
+		leftTopTabDebt = self.__getDebtList()
+
+		leftTopTabRecord = self.__getRecordList()
+
+		leftTop = QTabWidget()
+		leftTop.addTab(leftTopTabRecord, 'رکوردها')
+		leftTop.addTab(leftTopTabDebt, 'بدهی‌ها')
+		leftTop.setCurrentWidget(leftTopTabRecord)
+
+
 
 		leftLayout = QVBoxLayout()
 		leftLayout.addWidget(leftTop)
