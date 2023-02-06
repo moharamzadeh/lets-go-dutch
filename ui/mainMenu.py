@@ -7,12 +7,12 @@ class Window():
 	def __init__(self):
 		app = QApplication(sys.argv)
 
-		self.__createWidget()
+		self.__createWindow()
 		self.__createLayout()
 
 		sys.exit(app.exec_())
 
-	def __createWidget(self):
+	def __createWindow(self):
 		self.window = QMainWindow()
 		self.window.setWindowTitle('محاسبه دنگ')
 		self.window.showMaximized()
