@@ -1,7 +1,7 @@
 import meet
 import record
 import debt
-import man
+import person
 
 class Tally:
 	def __init__(self, title):
@@ -19,52 +19,52 @@ class Tally:
 			self.__debts.append(value)
 
 	@property
-	def mans(self):
-		mans = set()
+	def persons(self):
+		persons = set()
 		for meet in self.__meets:
-			mans.update(meet.mans)
+			persons.update(meet.persons)
 		for record in self.__records:
-			mans.update(record.mans)
+			persons.update(record.persons)
 		for debt in self.__debts:
-			mans.update(debt.mans)
-		return mans
+			persons.update(debt.persons)
+		return persons
 
 	@property
 	def tally(self):
 		tally = list()
-		for man1 in self.mans:
-			for man2 in self.mans:
-				def __shartExist(fromMan, toMan, listOfDict: list):
+		for person1 in self.persons:
+			for person2 in self.persons:
+				def __shartExist(fromPerson, toPerson, listOfDict: list):
 					for d in listOfDict:
-						if fromMan is d['from'] and toMan is d['to']:
+						if fromPerson is d['from'] and toPerson is d['to']:
 							return True
 					return False
-				if man1 is man2 or __shartExist(man2, man1, tally):
+				if person1 is person2 or __shartExist(person2, person1, tally):
 					continue
-				hesab = {'from': man1, 'to': man2, 'amount': self.amount(man1, man2), 'status': 'unpaid'}
+				hesab = {'from': person1, 'to': person2, 'amount': self.amount(person1, person2), 'status': 'unpaid'}
 				tally.append(hesab)
 		def toPositiveAmount(listOfDict: list):
 			l = listOfDict.copy()
 			for d in listOfDict:
 				if d['amount'] < 0:
-					man1 = d['from']
-					man2 = d['to']
+					person1 = d['from']
+					person2 = d['to']
 					amount = abs(d['amount'])
 					l.remove(d)
-					hesab = {'from': man2, 'to': man1, 'amount': amount, 'status': 'unpaid'}
+					hesab = {'from': person2, 'to': person1, 'amount': amount, 'status': 'unpaid'}
 					l.append(hesab)
 			return l
 		tally = toPositiveAmount(tally)
 		return tally
 
-	def amount(self, man1: man.Man, man2: man.Man):
+	def amount(self, person1: person.Person, person2: person.Person):
 		amount = 0
 		records = self.records
 		for record in records:
-			if record.buyer is man2 and man1 in record:
-				amount += record.manDebt[man1]
-			elif record.buyer is man1 and man2 in record:
-				amount -= record.manDebt[man2]
+			if record.buyer is person2 and person1 in record:
+				amount += record.personDebt[person1]
+			elif record.buyer is person1 and person2 in record:
+				amount -= record.personDebt[person2]
 		return amount
 
 	@property

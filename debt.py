@@ -5,8 +5,8 @@ class Debt(record.Record):
 		self.title = title
 		self.buyer = creditor
 		self.dateTime = dateTime
-		self.manDebt = dict()
-		self.manDebt[debtor] = amount
+		self.personDebt = dict()
+		self.personDebt[debtor] = amount
 
 	def __setitem__(self):
 		pass

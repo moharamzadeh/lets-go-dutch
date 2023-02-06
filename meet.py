@@ -12,9 +12,9 @@ class Meet:
 			self.records.append(r)
 
 	@property
-	def mans(self):
-		allMan = set()
+	def persons(self):
+		allPerson = set()
 		for record in self.records:
-			allMan.add(record.buyer)
-			allMan.update(record.mans)
-		return allMan
+			allPerson.add(record.buyer)
+			allPerson.update(record.persons)
+		return allPerson
