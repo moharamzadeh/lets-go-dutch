@@ -96,7 +96,7 @@ class Window():
 		leftBotton.setColumnCount(2)
 		leftBotton.setRowCount(20)
 
-		leftTopTabDebt = self.__getRecordList()
+		leftTopTabRecord = self.__getRecordList()
 		leftTopTabDebt = self.__getDebtList()
 
 		leftTopTabRecord = self.__getRecordList()
@@ -123,7 +123,7 @@ class Window():
 		splitter.addWidget(centerWidget)
 		splitter.addWidget(leftWidget)
 
-		splitter.setSizes([10, 200, 300])
+		splitter.setSizes([1, 60, 250])
 
 		layout.addWidget(splitter)
 		
