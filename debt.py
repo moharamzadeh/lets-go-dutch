@@ -2,8 +2,5 @@ import record
 
 class Debt(record.Record):
 	def __init__(self, title, debtor, creditor, amount, dateTime=None):
-		self.title = title
-		self.buyer = creditor
-		self.dateTime = dateTime
-		self.userDebt = dict()
+		super().__init__(title, creditor, dateTime)
 		self.userDebt[debtor] = amount
