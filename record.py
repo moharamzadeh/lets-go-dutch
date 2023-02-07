@@ -26,8 +26,12 @@ class Record:
 		users.remove(self.buyer)
 		return users
 
-	def addUser(self, person: person.Person, amount):
-		self.userDebt[person] = amount
+	def addUser(self, user: person.Person, amount):
+		self.userDebt[user] = amount
+
+	def addUsers(self, userAmount: dict):
+		for user in userAmount:
+			self.addUser(user, userAmount[user])
 
 	def __getitem__(self, person: person.Person):
 		return self.userDebt[person]
