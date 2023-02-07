@@ -106,6 +106,13 @@ class Tally:
 			records.extend(meet.records)
 		return records
 
+	@property
+	def cost(self):
+		cost = 0
+		for record in self.records:
+			cost += record.cost
+		return cost
+
 	def __repr__(self):
 		result = ''
 		for d in self.tallyList:
