@@ -12,6 +12,13 @@ class Meet:
 			self.records.append(record)
 
 	@property
+	def cost(self):
+		cost = 0
+		for record in self.records:
+			cost += record.cost
+		return cost
+
+	@property
 	def persons(self):
 		persons = set()
 		persons.update(self.buyers)
