@@ -94,27 +94,23 @@ class Window():
 		meetLayout.addWidget(btnAddMeet)
 
 
-		leftBotton = QTableWidget()
-		leftBotton.setColumnCount(3)
-		leftBotton.setRowCount(20)
-
-		leftTopTabRecord = self.__getRecordList()
-		leftTopTabbleDebt = self.__getDebtTable()
-
-		leftTopLayout = QHBoxLayout()
-		leftTopLayout.addWidget(leftTopTabRecord)
-		leftTopLayout.addWidget(leftTopTabbleDebt)
-
-		leftTop = QWidget()
-		leftTop.setLayout(leftTopLayout)
-
-		leftLayout = QVBoxLayout()
-		leftLayout.addWidget(leftTop)
-		leftLayout.addWidget(leftBotton)
-
 		leftWidget = QWidget()
+		leftLayout = QHBoxLayout()
 		leftWidget.setLayout(leftLayout)
+		recordLayout = QVBoxLayout()
+		debtLayout = QVBoxLayout()
 
+		leftLayout.addLayout(recordLayout)
+		leftLayout.addLayout(debtLayout)
+
+		recordList = self.__getRecordList()
+		recordLayout.addWidget(recordList)
+
+		debtList = self.__getDebtTable()
+		debtLayout.addWidget(debtList)
+
+		btnAddRecord = QPushButton('افزودن رکورد')
+		recordLayout.addWidget(btnAddRecord)
 
 
 		splitter = QSplitter(Qt.Horizontal)
