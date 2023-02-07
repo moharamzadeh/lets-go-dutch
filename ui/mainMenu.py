@@ -64,40 +64,33 @@ class Window():
 		return debtTable
 
 	def __createSplitter(self, layout: QHBoxLayout):
-		topRight = self.__getTallyList()
-		bottomRight = QVBoxLayout()
+		tallyWidget = QWidget()
+		tallyLayout = QVBoxLayout()
+		tallyWidget.setLayout(tallyLayout)
+		
+		tallyList = self.__getTallyList()
 
 		btnAddTally = QPushButton('افزودن حساب')
-		bottomRight.addWidget(btnAddTally)
-
 		btnDeleteTally = QPushButton('حذف حساب')
-		bottomRight.addWidget(btnDeleteTally)
-
 		btnAddPerson = QPushButton('ایجاد فرد')
-		bottomRight.addWidget(btnAddPerson)
-
 		btnComput = QPushButton('محاسبه')
-		bottomRight.addWidget(btnComput)
 
+		tallyLayout.addWidget(tallyList)
+		tallyLayout.addWidget(btnAddTally)
+		tallyLayout.addWidget(btnDeleteTally)
+		tallyLayout.addWidget(btnAddPerson)
+		tallyLayout.addWidget(btnComput)
 
-		rightLayout = QVBoxLayout()
-		rightLayout.addWidget(topRight)
-		rightLayout.addLayout(bottomRight)
+		meetList = self.__getMeetList()
 
-		rightWidget = QWidget()
-		rightWidget.setLayout(rightLayout)
-		
-
-		centerTop = self.__getMeetList()
-
-		centerLayout = QVBoxLayout()
-		centerLayout.addWidget(centerTop)
+		meetLayout = QVBoxLayout()
+		meetLayout.addWidget(meetList)
 
 		btnAddMeet = QPushButton('افزودن قرار')
-		centerLayout.addWidget(btnAddMeet)
+		meetLayout.addWidget(btnAddMeet)
 
-		centerWidget = QWidget()
-		centerWidget.setLayout(centerLayout)
+		meetWidget = QWidget()
+		meetWidget.setLayout(meetLayout)
 
 
 		leftBotton = QTableWidget()
@@ -125,8 +118,8 @@ class Window():
 
 		splitter = QSplitter(Qt.Horizontal)
 		splitter.setLayoutDirection(Qt.RightToLeft)
-		splitter.addWidget(rightWidget)
-		splitter.addWidget(centerWidget)
+		splitter.addWidget(tallyWidget)
+		splitter.addWidget(meetWidget)
 		splitter.addWidget(leftWidget)
 
 		splitter.setSizes([1, 60, 250])
