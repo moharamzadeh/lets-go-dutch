@@ -81,16 +81,17 @@ class Window():
 		tallyLayout.addWidget(btnAddPerson)
 		tallyLayout.addWidget(btnComput)
 
-		meetList = self.__getMeetList()
-
-		meetLayout = QVBoxLayout()
-		meetLayout.addWidget(meetList)
-
-		btnAddMeet = QPushButton('افزودن قرار')
-		meetLayout.addWidget(btnAddMeet)
 
 		meetWidget = QWidget()
+		meetLayout = QVBoxLayout()
 		meetWidget.setLayout(meetLayout)
+
+		meetList = self.__getMeetList()
+
+		btnAddMeet = QPushButton('افزودن قرار')
+
+		meetLayout.addWidget(meetList)
+		meetLayout.addWidget(btnAddMeet)
 
 
 		leftBotton = QTableWidget()
