@@ -67,8 +67,11 @@ class Window():
 		topRight = self.__getTallyList()
 		bottomRight = QVBoxLayout()
 
-		btnAdd = QPushButton('افزودن حساب')
-		bottomRight.addWidget(btnAdd)
+		btnAddTally = QPushButton('افزودن حساب')
+		bottomRight.addWidget(btnAddTally)
+
+		btnDeleteTally = QPushButton('حذف حساب')
+		bottomRight.addWidget(btnDeleteTally)
 
 		btnAddPerson = QPushButton('ایجاد فرد')
 		bottomRight.addWidget(btnAddPerson)
@@ -85,10 +88,16 @@ class Window():
 		rightWidget.setLayout(rightLayout)
 		
 
-		centerWidget = self.__getMeetList()
+		centerTop = self.__getMeetList()
 
 		centerLayout = QVBoxLayout()
-		centerLayout.addWidget(centerWidget)
+		centerLayout.addWidget(centerTop)
+
+		btnAddMeet = QPushButton('افزودن قرار')
+		centerLayout.addWidget(btnAddMeet)
+
+		centerWidget = QWidget()
+		centerWidget.setLayout(centerLayout)
 
 
 		leftBotton = QTableWidget()
