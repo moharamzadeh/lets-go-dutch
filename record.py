@@ -1,33 +1,43 @@
-import man
+import person
 
 class Record:
-	def __init__(self, title, buyer: man.Man, dateTime=None):
+	def __init__(self, title, buyer: person.Person, dateTime=None):
 		self.title = title
 		self.buyer = buyer
 		self.dateTime = dateTime
-		self.manDebt = dict()
+		self.userDebt = dict()
 
 	@property
-	def mans(self):
-		mans = set(self.manDebt.keys())
-		mans.add(self.buyer)
-		return mans
+	def cost(self):
+		cost = 0
+		for debt in self.userDebt.values():
+			cost += debt
+		return cost
 
-	def __setitem__(self, man: man.Man, amount):
-		self.manDebt[man] = amount
+	@property
+	def persons(self):
+		persons = set(self.userDebt.keys())
+		persons.add(self.buyer)
+		return persons
 
-	def __getitem__(self, man: man.Man):
-		return self.manDebt[man]
+	@property
+	def users(self):
+		users = self.persons.copy()
+		users.remove(self.buyer)
+		return users
 
-	def __contains__(self, man: man.Man):
-		mans = self.mans.copy()
-		mans.remove(self.buyer)
-		if man in mans:
-			return True
-		return False
+	def addUser(self, user: person.Person, amount):
+		self.userDebt[user] = amount
+
+	def addUsers(self, userAmount: dict):
+		for user in userAmount:
+			self.addUser(user, userAmount[user])
+
+	def __getitem__(self, person: person.Person):
+		return self.userDebt[person]
 
 	def __repr__(self):
 		result = f"{self.title} ->\t{str(self.buyer)}: "
-		for man in self.manDebt:
-			result += f"{str(man)} {self.manDebt[man]}  "
+		for person in self.userDebt:
+			result += f"{str(person)} {self.userDebt[person]}  "
 		return result
