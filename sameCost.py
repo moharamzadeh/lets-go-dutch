@@ -12,8 +12,12 @@ class SameCost(record.Record):
 		return self.amount
 
 	def addUser(self, person: person.Person):
-		self.__allPerson.add(person)
-		self.__computDebts()
+		self.addUsers(person)
+
+	def addUsers(self, *persons):
+		for person in persons:
+			self.__allPerson.add(person)
+			self.__computDebts()
 
 	def __computDebts(self):
 		for user in self.__allPerson:

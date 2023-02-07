@@ -29,6 +29,10 @@ class Tally:
 			return self.__records.append(value)
 		raise ValueError('You must pass Meet or Record or Debt')
 
+	def addDatas(self, *values: tuple):
+		for value in values:
+			self.addData(value)
+
 	@property
 	def persons(self):
 		persons = set()
