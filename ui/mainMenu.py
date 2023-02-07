@@ -63,6 +63,14 @@ class Window():
 		debtTable.setRowCount(20)
 		return debtTable
 
+	def __getPersonList(self):
+		personList = QListWidget()
+		personList.insertItem(0, 'عرفان')
+		personList.insertItem(1, 'علی')
+		personList.insertItem(2, 'امیررضا')
+		personList.setCurrentRow(0)
+		return personList
+
 	def __createSplitter(self, layout: QHBoxLayout):
 		tallyWidget = QWidget()
 		tallyLayout = QVBoxLayout()
@@ -72,12 +80,10 @@ class Window():
 
 		btnAddTally = QPushButton('افزودن حساب')
 		btnDeleteTally = QPushButton('حذف حساب')
-		btnAddPerson = QPushButton('ایجاد فرد')
 		btnComput = QPushButton('محاسبه')
 
 		tallyLayout.addWidget(btnComput)
 		tallyLayout.addWidget(btnDeleteTally)
-		tallyLayout.addWidget(btnAddPerson)
 		tallyLayout.addWidget(btnAddTally)
 		tallyLayout.addWidget(tallyList)
 
@@ -108,8 +114,18 @@ class Window():
 		recordLayout.addWidget(btnAddRecord)
 		recordLayout.addWidget(recordList)
 
+		personWidget = QWidget()
+		personLayout = QVBoxLayout()
+		personWidget.setLayout(personLayout)
+		personList = self.__getPersonList()
+		btnAddPerson = QPushButton('افزودن فرد')
+		personLayout.addWidget(btnAddPerson)
+		personLayout.addWidget(personList)
+
+		debtPersonSplitter = QSplitter(Qt.Vertical)
 		debtList = self.__getDebtTable()
-		debtLayout.addWidget(debtList)
+		debtPersonSplitter.addWidget(debtList)
+		debtPersonSplitter.addWidget(personWidget)
 
 
 
@@ -118,8 +134,9 @@ class Window():
 		splitter.addWidget(tallyWidget)
 		splitter.addWidget(meetWidget)
 		splitter.addWidget(leftWidget)
+		splitter.addWidget(debtPersonSplitter)
 
-		splitter.setSizes([1, 60, 250])
+		# splitter.setSizes([1, 60, 250])
 
 		layout.addWidget(splitter)
 		
