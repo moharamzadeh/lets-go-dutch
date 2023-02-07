@@ -7,6 +7,10 @@ class SameCost(record.Record):
 		self.amount = amount
 		self.__allPerson = {self.buyer}
 
+	@property
+	def cost(self):
+		return self.amount
+
 	def addUser(self, person: person.Person):
 		self.__allPerson.add(person)
 		self.__computDebts()

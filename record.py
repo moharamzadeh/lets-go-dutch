@@ -8,6 +8,13 @@ class Record:
 		self.userDebt = dict()
 
 	@property
+	def cost(self):
+		cost = 0
+		for debt in self.userDebt.values():
+			cost += debt
+		return cost
+
+	@property
 	def persons(self):
 		persons = set(self.userDebt.keys())
 		persons.add(self.buyer)
