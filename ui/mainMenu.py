@@ -17,7 +17,7 @@ class Window():
 		self.window.setWindowTitle('محاسبه دنگ')
 		self.window.showMaximized()
 		self.window.setMinimumHeight(400)
-		self.window.setMinimumWidth(600)
+		self.window.setMinimumWidth(800)
 		self.__createWidget()
 		self.window.show()
 
@@ -32,7 +32,7 @@ class Window():
 
 
 		self.__createSplitter(layout)
-		self.__createMenuBar()
+		# self.__createMenuBar()
 
 	def __getTallyList(self):		
 		tallyList = QListWidget()
@@ -80,11 +80,9 @@ class Window():
 
 		btnAddTally = QPushButton('افزودن حساب')
 		btnDeleteTally = QPushButton('حذف حساب')
-		btnComput = QPushButton('محاسبه')
 
-		tallyLayout.addWidget(btnComput)
-		tallyLayout.addWidget(btnDeleteTally)
 		tallyLayout.addWidget(btnAddTally)
+		tallyLayout.addWidget(btnDeleteTally)
 		tallyLayout.addWidget(tallyList)
 
 
@@ -122,10 +120,16 @@ class Window():
 		personLayout.addWidget(btnAddPerson)
 		personLayout.addWidget(personList)
 
+		result = QTextBrowser()
+
+		personResultSplitter = QSplitter(Qt.Horizontal)
+		personResultSplitter.addWidget(result)
+		personResultSplitter.addWidget(personWidget)
+
 		debtPersonSplitter = QSplitter(Qt.Vertical)
 		debtList = self.__getDebtTable()
 		debtPersonSplitter.addWidget(debtList)
-		debtPersonSplitter.addWidget(personWidget)
+		debtPersonSplitter.addWidget(personResultSplitter)
 
 
 
@@ -136,7 +140,7 @@ class Window():
 		splitter.addWidget(leftWidget)
 		splitter.addWidget(debtPersonSplitter)
 
-		# splitter.setSizes([1, 60, 250])
+		splitter.setSizes([1, 1, 1, 150])
 
 		layout.addWidget(splitter)
 		
@@ -155,7 +159,7 @@ class Window():
 	def __createExitMessage(self):
 		msg = QMessageBox()
 		msg.setIcon(QMessageBox.Warning)
-		msg.setText('می‌خواهید از برنامه خارج شوید؟')
+		msg.setText('آیا می‌خواهید از برنامه خارج شوید؟')
 		msg.setWindowTitle('خروج')
 		msg.layoutDirection()
 		msg.setStandardButtons(QMessageBox.No | QMessageBox.Yes)
