@@ -75,11 +75,11 @@ class Window():
 		btnAddPerson = QPushButton('ایجاد فرد')
 		btnComput = QPushButton('محاسبه')
 
-		tallyLayout.addWidget(tallyList)
-		tallyLayout.addWidget(btnAddTally)
+		tallyLayout.addWidget(btnComput)
 		tallyLayout.addWidget(btnDeleteTally)
 		tallyLayout.addWidget(btnAddPerson)
-		tallyLayout.addWidget(btnComput)
+		tallyLayout.addWidget(btnAddTally)
+		tallyLayout.addWidget(tallyList)
 
 
 		meetWidget = QWidget()
@@ -90,8 +90,8 @@ class Window():
 
 		btnAddMeet = QPushButton('افزودن قرار')
 
-		meetLayout.addWidget(meetList)
 		meetLayout.addWidget(btnAddMeet)
+		meetLayout.addWidget(meetList)
 
 
 		leftWidget = QWidget()
@@ -103,14 +103,14 @@ class Window():
 		leftLayout.addLayout(recordLayout)
 		leftLayout.addLayout(debtLayout)
 
+		btnAddRecord = QPushButton('افزودن رکورد')
 		recordList = self.__getRecordList()
+		recordLayout.addWidget(btnAddRecord)
 		recordLayout.addWidget(recordList)
 
 		debtList = self.__getDebtTable()
 		debtLayout.addWidget(debtList)
 
-		btnAddRecord = QPushButton('افزودن رکورد')
-		recordLayout.addWidget(btnAddRecord)
 
 
 		splitter = QSplitter(Qt.Horizontal)
