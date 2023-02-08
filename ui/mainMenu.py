@@ -99,43 +99,59 @@ class Window():
 	def __meetWidget(self):
 		meetWidget = QWidget()
 		meetLayout = QVBoxLayout()
+		btnLayout = QHBoxLayout()
 		meetWidget.setLayout(meetLayout)
 
 		meetList = self.__getMeetList()
 
 		btnAddMeet = QPushButton('افزودن قرار')
+		btnDeleteMeet = QPushButton('حذف قرار')
+		btnLayout.addWidget(btnAddMeet)
+		btnLayout.addWidget(btnDeleteMeet)
 
-		meetLayout.addWidget(btnAddMeet)
+		meetLayout.addLayout(btnLayout)
 		meetLayout.addWidget(meetList)
 		return meetWidget
 
 	def __personWidget(self):
 		personWidget = QWidget()
 		personLayout = QVBoxLayout()
+		btnLayout = QHBoxLayout()
 		personWidget.setLayout(personLayout)
 		personList = self.__getPersonList()
 		btnAddPerson = QPushButton('افزودن فرد')
-		personLayout.addWidget(btnAddPerson)
+		btnDeletePerson = QPushButton('حذف فرد')
+		btnLayout.addWidget(btnAddPerson)
+		btnLayout.addWidget(btnDeletePerson)
+		personLayout.addLayout(btnLayout)
 		personLayout.addWidget(personList)
 		return personWidget
 
 	def __debtWidget(self):
 		debtWidget = QWidget()
 		debtLayout = QVBoxLayout()
+		btnLayout = QHBoxLayout()
 		debtWidget.setLayout(debtLayout)
 		debtList = self.__getDebtList()
 		btnAddDebt = QPushButton('افزودن بدهی')
-		debtLayout.addWidget(btnAddDebt)
+		btnDeleteDebt= QPushButton('حذف بدهی')
+		btnLayout.addWidget(btnAddDebt)
+		btnLayout.addWidget(btnDeleteDebt)
+		debtLayout.addLayout(btnLayout)
 		debtLayout.addWidget(debtList)
 		return debtWidget
 
 	def __recordWidget(self):
 		recordWidget = QWidget()
 		recordLayout = QVBoxLayout()
+		btnLayout = QHBoxLayout()
 		recordWidget.setLayout(recordLayout)
 		btnAddRecord = QPushButton('افزودن رکورد')
+		btnDeleteRecord = QPushButton('حذف رکورد')
+		btnLayout.addWidget(btnAddRecord)
+		btnLayout.addWidget(btnDeleteRecord)
 		recordList = self.__getRecordList()
-		recordLayout.addWidget(btnAddRecord)
+		recordLayout.addLayout(btnLayout)
 		recordLayout.addWidget(recordList)
 		return recordWidget
 
