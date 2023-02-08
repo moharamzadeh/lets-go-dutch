@@ -11,9 +11,6 @@ class WidgetAccess(Window):
 
 	def _createLayout(self):
 		super()._createLayout()
-		self.recordList.addItem('عرفان محرم زاده')
-		self.btnDeleteRecord.clicked.connect(lambda: self.clickBntAddTally())
-
 
 	@property
 	def btnAddTally(self):
@@ -75,11 +72,3 @@ class WidgetAccess(Window):
 	@property
 	def debtList(self):
 		return self.debtWidget.layout().itemAt(1).widget()
-
-
-	def clickBntAddTally(self):
-		print('hello')
-		# self.mainSplitter.widge
-
-if __name__ == '__main__':
-	widgetAccess = WidgetAccess()
