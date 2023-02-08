@@ -57,11 +57,12 @@ class Window():
 		recordList.setCurrentRow(0)
 		return recordList
 
-	def __getDebtTable(self):
-		debtTable = QTableWidget()
-		debtTable.setColumnCount(4)
-		debtTable.setRowCount(20)
-		return debtTable
+	def __getDebtList(self):
+		debtList = QListWidget()
+		debtList.insertItem(0, 'اجاره')
+		debtList.insertItem(1, 'شهریه')
+		debtList.setCurrentRow(0)
+		return debtList
 
 	def __getPersonList(self):
 		personList = QListWidget()
@@ -70,6 +71,13 @@ class Window():
 		personList.insertItem(2, 'امیررضا')
 		personList.setCurrentRow(0)
 		return personList
+
+	def __getDetailRecord(self):
+		detailRecord = QTableWidget()
+		detailRecord.setColumnCount(4)
+		detailRecord.setRowCount(20)
+		return detailRecord
+
 
 	def __tallyWidget(self):
 		tallyWidget = QWidget()
@@ -109,6 +117,26 @@ class Window():
 		personLayout.addWidget(personList)
 		return personWidget
 
+	def __debtWidget(self):
+		debtWidget = QWidget()
+		debtLayout = QVBoxLayout()
+		debtWidget.setLayout(debtLayout)
+		debtList = self.__getDebtList()
+		btnAddDebt = QPushButton('افزودن بدهی')
+		debtLayout.addWidget(btnAddDebt)
+		debtLayout.addWidget(debtList)
+		return debtWidget
+
+	def __recordWidget(self):
+		recordWidget = QWidget()
+		recordLayout = QVBoxLayout()
+		recordWidget.setLayout(recordLayout)
+		btnAddRecord = QPushButton('افزودن رکورد')
+		recordList = self.__getRecordList()
+		recordLayout.addWidget(btnAddRecord)
+		recordLayout.addWidget(recordList)
+		return recordWidget
+
 	def __createSplitter(self, layout: QHBoxLayout):
 		tallyWidget = self.__tallyWidget()
 		meetWidget = self.__meetWidget()
@@ -116,17 +144,13 @@ class Window():
 
 		leftWidget = QWidget()
 		leftLayout = QHBoxLayout()
-		leftWidget.setLayout(leftLayout)
-		recordLayout = QVBoxLayout()
-		debtLayout = QVBoxLayout()
+		leftWidget.setLayout(leftLayout)		
 
-		leftLayout.addLayout(recordLayout)
-		leftLayout.addLayout(debtLayout)
-
-		btnAddRecord = QPushButton('افزودن رکورد')
-		recordList = self.__getRecordList()
-		recordLayout.addWidget(btnAddRecord)
-		recordLayout.addWidget(recordList)
+		recordDebtSplitter = QSplitter(Qt.Vertical)
+		recordWidget = self.__recordWidget()
+		debtWidget = self.__debtWidget()
+		recordDebtSplitter.addWidget(recordWidget)
+		recordDebtSplitter.addWidget(debtWidget)
 
 		personWidget = self.__personWidget()
 
@@ -136,19 +160,18 @@ class Window():
 		personResultSplitter.addWidget(result)
 		personResultSplitter.addWidget(personWidget)
 
-		debtPersonSplitter = QSplitter(Qt.Vertical)
-		debtList = self.__getDebtTable()
-		debtPersonSplitter.addWidget(debtList)
-		debtPersonSplitter.addWidget(personResultSplitter)
-
+		detailPersonSplitter = QSplitter(Qt.Vertical)
+		detailRecord = self.__getDetailRecord()
+		detailPersonSplitter.addWidget(detailRecord)
+		detailPersonSplitter.addWidget(personResultSplitter)
 
 
 		splitter = QSplitter(Qt.Horizontal)
 		splitter.setLayoutDirection(Qt.RightToLeft)
 		splitter.addWidget(tallyWidget)
 		splitter.addWidget(meetWidget)
-		splitter.addWidget(leftWidget)
-		splitter.addWidget(debtPersonSplitter)
+		splitter.addWidget(recordDebtSplitter)
+		splitter.addWidget(detailPersonSplitter)
 
 		splitter.setSizes([1, 1, 1, 150])
 
