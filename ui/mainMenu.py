@@ -82,15 +82,17 @@ class Window():
 	def __tallyWidget(self):
 		tallyWidget = QWidget()
 		tallyLayout = QVBoxLayout()
+		btnLayout = QHBoxLayout()
 		tallyWidget.setLayout(tallyLayout)
 		
 		tallyList = self.__getTallyList()
 
 		btnAddTally = QPushButton('افزودن حساب')
 		btnDeleteTally = QPushButton('حذف حساب')
+		btnLayout.addWidget(btnAddTally)
+		btnLayout.addWidget(btnDeleteTally)
 
-		tallyLayout.addWidget(btnAddTally)
-		tallyLayout.addWidget(btnDeleteTally)
+		tallyLayout.addLayout(btnLayout)
 		tallyLayout.addWidget(tallyList)
 		return tallyWidget
 
@@ -154,10 +156,6 @@ class Window():
 
 		result = QTextBrowser()
 
-		# personResultSplitter = QSplitter(Qt.Horizontal)
-		# personResultSplitter.addWidget(result)
-		# personResultSplitter.addWidget(personWidget)
-
 		tallyPersonSplitter = QSplitter(Qt.Vertical)
 		personWidget = self.__personWidget()
 		tallyPersonSplitter.addWidget(tallyWidget)
@@ -176,7 +174,10 @@ class Window():
 		mainSplitter.addWidget(recordDebtSplitter)
 		mainSplitter.addWidget(detailResultSplitter)
 
-		mainSplitter.setSizes([1, 1, 1, 150])
+		mainSplitter.setStretchFactor(0, 1)
+		mainSplitter.setStretchFactor(1, 1)
+		mainSplitter.setStretchFactor(2, 2)
+		mainSplitter.setStretchFactor(3, 4)
 
 		layout.addWidget(mainSplitter)
 		
