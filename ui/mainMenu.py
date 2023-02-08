@@ -147,9 +147,9 @@ class Window():
 		self.leftWidget.setLayout(leftLayout)		
 
 		recordDebtSplitter = QSplitter(Qt.Vertical)
-		recordWidget = self.__recordWidget()
+		self.recordWidget = self.__recordWidget()
 		self.debtWidget = self.__debtWidget()
-		recordDebtSplitter.addWidget(recordWidget)
+		recordDebtSplitter.addWidget(self.recordWidget)
 		recordDebtSplitter.addWidget(self.debtWidget)
 
 		self.result = QTextBrowser()
