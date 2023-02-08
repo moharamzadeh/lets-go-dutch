@@ -1,8 +1,11 @@
 from widgetAccess import *
+from tally import *
 
 class LinkUI(WidgetAccess):
 	def __init__(self):
 		app = QApplication(sys.argv)
+
+		self.tallyObjectList = list()
 
 		super()._createWindow()
 		self._createLayout()
@@ -12,6 +15,7 @@ class LinkUI(WidgetAccess):
 	def _createLayout(self):
 		super()._createLayout()
 		self._setLink()
+		self._setSelect()
 
 	def _setLink(self):
 		self.__setBtnAddTally()
@@ -37,28 +41,51 @@ class LinkUI(WidgetAccess):
 
 	def _clickBtnAddDebt(self):
 		text, ok = QInputDialog.getText(self.widget, 'نام بدهی', 'نام بدهی را وارد کنید:')
+		debtItem = QListWidgetItem(text)
 		if ok:
-			self.debtList.addItem(text)
+			self.debtList.addItem(debtItem)
 
 	def _clickBtnAddRecord(self):
 		text, ok = QInputDialog.getText(self.widget, 'نام رکورد', 'نام رکورد را وارد کنید:')
+		recordItem = QListWidgetItem(text)
 		if ok:
-			self.recordList.addItem(text)
+			self.recordList.addItem(recordItem)
 
 	def _clickBtnAddMeet(self):
 		text, ok = QInputDialog.getText(self.widget, 'نام قرار', 'نام قرار را وارد کنید:')
+		meetItem = QListWidgetItem(text)
 		if ok:
-			self.meetList.addItem(text)
+			self.meetList.addItem(meetItem)
 
 	def _clickBtnAddPerson(self):
 		text, ok = QInputDialog.getText(self.widget, 'نام فرد', 'نام فرد را وارد کنید:')
+		personItem = QListWidgetItem(text)
 		if ok:
-			self.personList.addItem(text)
+			self.personList.addItem(personItem)
 
 	def _clickBtnAddTally(self):
-		text, ok = QInputDialog.getText(self.widget, 'نام قرار', 'نام قرار را وارد کنید:')
+		title, ok = QInputDialog.getText(self.widget, 'نام قرار', 'نام قرار را وارد کنید:')
+		tallyItem = QListWidgetItem(title)
 		if ok:
-			self.tallyList.addItem(str(text))
+			self.tallyList.addItem(tallyItem)
+			tally = Tally(title)
+			self.tallyObjectList.append(tally)
+
+	
+	def _setSelect(self):
+		self._setSelectTally()
+
+	def _setSelectTally(self):
+		self.tallyList.itemClicked.connect(lambda: self.__showTallyDetail())
+
+	def __showTallyDetail(self):
+		tallyTitle = self.tallyList.currentItem().text()
+		selectedTally = self.search(tallyTitle, self.tallyObjectList)
+
+	def search(self, title: str, list: list):
+		for item in list:
+			if item.title == title:
+				return item
 
 if __name__ == '__main__':
 	linkUI = LinkUI()
