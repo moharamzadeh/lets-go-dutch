@@ -11,10 +11,15 @@ class LinkUI(Window):
 
 	def _createLayout(self):
 		super()._createLayout()
-		print(self.Layout.itemAt(0))
+		self.btnAddTally.clicked.connect(lambda: self.clickBntAddTally())
 
+	@property
 	def btnAddTally(self):
-		self.mainSplitter.widge
+		return self.tallyWidget.layout().itemAt(0).itemAt(0).widget()
+
+	def clickBntAddTally(self):
+		print('hello')
+		# self.mainSplitter.widge
 
 if __name__ == '__main__':
 	linkUI = LinkUI()

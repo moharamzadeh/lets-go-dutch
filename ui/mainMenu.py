@@ -138,37 +138,37 @@ class Window():
 		return recordWidget
 
 	def __createSplitter(self, layout: QHBoxLayout):
-		tallyWidget = self.__tallyWidget()
-		meetWidget = self.__meetWidget()
+		self.tallyWidget = self.__tallyWidget()
+		self.meetWidget = self.__meetWidget()
 
 
-		leftWidget = QWidget()
+		self.leftWidget = QWidget()
 		leftLayout = QHBoxLayout()
-		leftWidget.setLayout(leftLayout)		
+		self.leftWidget.setLayout(leftLayout)		
 
 		recordDebtSplitter = QSplitter(Qt.Vertical)
 		recordWidget = self.__recordWidget()
-		debtWidget = self.__debtWidget()
+		self.debtWidget = self.__debtWidget()
 		recordDebtSplitter.addWidget(recordWidget)
-		recordDebtSplitter.addWidget(debtWidget)
+		recordDebtSplitter.addWidget(self.debtWidget)
 
-		result = QTextBrowser()
+		self.result = QTextBrowser()
 
 		tallyPersonSplitter = QSplitter(Qt.Vertical)
-		personWidget = self.__personWidget()
-		tallyPersonSplitter.addWidget(tallyWidget)
-		tallyPersonSplitter.addWidget(personWidget)
+		self.personWidget = self.__personWidget()
+		tallyPersonSplitter.addWidget(self.tallyWidget)
+		tallyPersonSplitter.addWidget(self.personWidget)
 
 		detailResultSplitter = QSplitter(Qt.Vertical)
-		detailRecord = self.__getDetailRecord()
-		detailResultSplitter.addWidget(detailRecord)
-		detailResultSplitter.addWidget(result)
+		self.detailRecord = self.__getDetailRecord()
+		detailResultSplitter.addWidget(self.detailRecord)
+		detailResultSplitter.addWidget(self.result)
 
 
 		self.mainSplitter = QSplitter(Qt.Horizontal)
 		self.mainSplitter.setLayoutDirection(Qt.RightToLeft)
 		self.mainSplitter.addWidget(tallyPersonSplitter)
-		self.mainSplitter.addWidget(meetWidget)
+		self.mainSplitter.addWidget(self.meetWidget)
 		self.mainSplitter.addWidget(recordDebtSplitter)
 		self.mainSplitter.addWidget(detailResultSplitter)
 
