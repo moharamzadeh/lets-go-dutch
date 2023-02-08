@@ -71,7 +71,7 @@ class Window():
 		personList.setCurrentRow(0)
 		return personList
 
-	def __createSplitter(self, layout: QHBoxLayout):
+	def __tallyWidget(self):
 		tallyWidget = QWidget()
 		tallyLayout = QVBoxLayout()
 		tallyWidget.setLayout(tallyLayout)
@@ -84,8 +84,9 @@ class Window():
 		tallyLayout.addWidget(btnAddTally)
 		tallyLayout.addWidget(btnDeleteTally)
 		tallyLayout.addWidget(tallyList)
+		return tallyWidget
 
-
+	def __meetWidget(self):
 		meetWidget = QWidget()
 		meetLayout = QVBoxLayout()
 		meetWidget.setLayout(meetLayout)
@@ -96,6 +97,21 @@ class Window():
 
 		meetLayout.addWidget(btnAddMeet)
 		meetLayout.addWidget(meetList)
+		return meetWidget
+
+	def __personWidget(self):
+		personWidget = QWidget()
+		personLayout = QVBoxLayout()
+		personWidget.setLayout(personLayout)
+		personList = self.__getPersonList()
+		btnAddPerson = QPushButton('افزودن فرد')
+		personLayout.addWidget(btnAddPerson)
+		personLayout.addWidget(personList)
+		return personWidget
+
+	def __createSplitter(self, layout: QHBoxLayout):
+		tallyWidget = self.__tallyWidget()
+		meetWidget = self.__meetWidget()
 
 
 		leftWidget = QWidget()
@@ -112,13 +128,7 @@ class Window():
 		recordLayout.addWidget(btnAddRecord)
 		recordLayout.addWidget(recordList)
 
-		personWidget = QWidget()
-		personLayout = QVBoxLayout()
-		personWidget.setLayout(personLayout)
-		personList = self.__getPersonList()
-		btnAddPerson = QPushButton('افزودن فرد')
-		personLayout.addWidget(btnAddPerson)
-		personLayout.addWidget(personList)
+		personWidget = self.__personWidget()
 
 		result = QTextBrowser()
 
