@@ -2,10 +2,16 @@ from mainMenu import *
 
 class LinkUI(Window):
 	def __init__(self):
-		super().__init__()
+		app = QApplication(sys.argv)
 
-	def __createLayout(self):
-		super().__createLayout()
+		super()._createWindow()
+		self._createLayout()
+
+		sys.exit(app.exec_())
+
+	def _createLayout(self):
+		super()._createLayout()
+		print(self.Layout.itemAt(0))
 
 	def btnAddTally(self):
 		self.mainSplitter.widge

@@ -7,12 +7,12 @@ class Window():
 	def __init__(self):
 		app = QApplication(sys.argv)
 
-		self.__createWindow()
-		self.__createLayout()
+		self._createWindow()
+		self._createLayout()
 
 		sys.exit(app.exec_())
 
-	def __createWindow(self):
+	def _createWindow(self):
 		self.window = QMainWindow()
 		self.window.setWindowTitle('محاسبه دنگ')
 		self.window.showMaximized()
@@ -25,13 +25,13 @@ class Window():
 		self.widget = QWidget()
 		self.window.setCentralWidget(self.widget)
 
-	def __createLayout(self):
-		layout = QHBoxLayout()
-		layout.setDirection(QHBoxLayout.RightToLeft)
-		self.widget.setLayout(layout)
+	def _createLayout(self):
+		self.Layout = QHBoxLayout()
+		self.Layout.setDirection(QHBoxLayout.RightToLeft)
+		self.widget.setLayout(self.Layout)
 
 
-		self.__createSplitter(layout)
+		self.__createSplitter(self.Layout)
 		# self.__createMenuBar()
 
 	def __getTallyList(self):		
