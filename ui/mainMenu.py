@@ -152,30 +152,33 @@ class Window():
 		recordDebtSplitter.addWidget(recordWidget)
 		recordDebtSplitter.addWidget(debtWidget)
 
-		personWidget = self.__personWidget()
-
 		result = QTextBrowser()
 
-		personResultSplitter = QSplitter(Qt.Horizontal)
-		personResultSplitter.addWidget(result)
-		personResultSplitter.addWidget(personWidget)
+		# personResultSplitter = QSplitter(Qt.Horizontal)
+		# personResultSplitter.addWidget(result)
+		# personResultSplitter.addWidget(personWidget)
 
-		detailPersonSplitter = QSplitter(Qt.Vertical)
+		tallyPersonSplitter = QSplitter(Qt.Vertical)
+		personWidget = self.__personWidget()
+		tallyPersonSplitter.addWidget(tallyWidget)
+		tallyPersonSplitter.addWidget(personWidget)
+
+		detailResultSplitter = QSplitter(Qt.Vertical)
 		detailRecord = self.__getDetailRecord()
-		detailPersonSplitter.addWidget(detailRecord)
-		detailPersonSplitter.addWidget(personResultSplitter)
+		detailResultSplitter.addWidget(detailRecord)
+		detailResultSplitter.addWidget(result)
 
 
-		splitter = QSplitter(Qt.Horizontal)
-		splitter.setLayoutDirection(Qt.RightToLeft)
-		splitter.addWidget(tallyWidget)
-		splitter.addWidget(meetWidget)
-		splitter.addWidget(recordDebtSplitter)
-		splitter.addWidget(detailPersonSplitter)
+		mainSplitter = QSplitter(Qt.Horizontal)
+		mainSplitter.setLayoutDirection(Qt.RightToLeft)
+		mainSplitter.addWidget(tallyPersonSplitter)
+		mainSplitter.addWidget(meetWidget)
+		mainSplitter.addWidget(recordDebtSplitter)
+		mainSplitter.addWidget(detailResultSplitter)
 
-		splitter.setSizes([1, 1, 1, 150])
+		mainSplitter.setSizes([1, 1, 1, 150])
 
-		layout.addWidget(splitter)
+		layout.addWidget(mainSplitter)
 		
 	
 	def __createMenuBar(self):
