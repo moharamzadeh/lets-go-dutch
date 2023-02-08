@@ -36,40 +36,22 @@ class Window():
 
 	def __getTallyList(self):		
 		tallyList = QListWidget()
-		tallyList.insertItem(0, 'انزلی')
-		tallyList.insertItem(1, 'آخر ترم')
-		tallyList.setCurrentRow(0)
 		return tallyList
 
 	def __getMeetList(self):
 		meetList = QListWidget()
-		meetList.insertItem(0, 'شام')
-		meetList.insertItem(1, 'ناهار')
-		meetList.insertItem(2, 'پاساژ')
-		meetList.setCurrentRow(0)
 		return meetList
 
 	def __getRecordList(self):
 		recordList = QListWidget()
-		recordList.insertItem(0, 'پیتزا\t(خریدار: عرفان)')
-		recordList.insertItem(1, 'نوشیدنی')
-		recordList.insertItem(2, 'تاکسی')
-		recordList.setCurrentRow(0)
 		return recordList
 
 	def __getDebtList(self):
 		debtList = QListWidget()
-		debtList.insertItem(0, 'اجاره')
-		debtList.insertItem(1, 'شهریه')
-		debtList.setCurrentRow(0)
 		return debtList
 
 	def __getPersonList(self):
 		personList = QListWidget()
-		personList.insertItem(0, 'عرفان')
-		personList.insertItem(1, 'علی')
-		personList.insertItem(2, 'امیررضا')
-		personList.setCurrentRow(0)
 		return personList
 
 	def __getDetailRecord(self):
@@ -183,19 +165,19 @@ class Window():
 		detailResultSplitter.addWidget(result)
 
 
-		mainSplitter = QSplitter(Qt.Horizontal)
-		mainSplitter.setLayoutDirection(Qt.RightToLeft)
-		mainSplitter.addWidget(tallyPersonSplitter)
-		mainSplitter.addWidget(meetWidget)
-		mainSplitter.addWidget(recordDebtSplitter)
-		mainSplitter.addWidget(detailResultSplitter)
+		self.mainSplitter = QSplitter(Qt.Horizontal)
+		self.mainSplitter.setLayoutDirection(Qt.RightToLeft)
+		self.mainSplitter.addWidget(tallyPersonSplitter)
+		self.mainSplitter.addWidget(meetWidget)
+		self.mainSplitter.addWidget(recordDebtSplitter)
+		self.mainSplitter.addWidget(detailResultSplitter)
 
-		mainSplitter.setStretchFactor(0, 1)
-		mainSplitter.setStretchFactor(1, 1)
-		mainSplitter.setStretchFactor(2, 2)
-		mainSplitter.setStretchFactor(3, 4)
+		self.mainSplitter.setStretchFactor(0, 1)
+		self.mainSplitter.setStretchFactor(1, 1)
+		self.mainSplitter.setStretchFactor(2, 2)
+		self.mainSplitter.setStretchFactor(3, 4)
 
-		layout.addWidget(mainSplitter)
+		layout.addWidget(self.mainSplitter)
 		
 	
 	def __createMenuBar(self):
@@ -220,7 +202,3 @@ class Window():
 		retval = msg.exec_()
 		if retval == QMessageBox.Yes:
 			self.window.close()
-
-
-if __name__ == '__main__':
-	window = Window()
