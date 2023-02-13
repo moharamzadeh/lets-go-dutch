@@ -1,0 +1,145 @@
+from mainWindow import *
+
+class Widgets(Window):
+	def __init__(self):
+		super().__init__()
+		self._createWidgets()
+		self._createSplitter()
+
+	def _createWidgets(self):
+		self.__createWidgetTally()
+		self.__createWidgetPerson()
+		self.__createWidgetMeet()
+		self.__createWidgetRecord()
+		self.__createWidgetDebt()
+		self.__createWidgetDetail()
+		# self.__createWidgetResult()
+
+	def _createSplitter(self):
+		self.splitMain = QSplitter(Qt.Horizontal)
+		self.splitMain.setLayoutDirection(Qt.RightToLeft)
+		splitTallyPerson = QSplitter(Qt.Vertical)
+		splitRecordDebt = QSplitter(Qt.Vertical)
+		splitDetailResult = QSplitter(Qt.Vertical)
+
+		splitTallyPerson.addWidget(self.widgetTally)
+		splitTallyPerson.addWidget(self.widgetPerson)
+		splitRecordDebt.addWidget(self.widgetRecord)
+		splitRecordDebt.addWidget(self.widgetDebt)
+		splitDetailResult.addWidget(self.widgetDetail)
+		# splitDetailResult.addWidget(self.widgetResult)
+
+		self.splitMain.addWidget(splitTallyPerson)
+		self.splitMain.addWidget(self.widgetMeet)
+		self.splitMain.addWidget(splitRecordDebt)
+		self.splitMain.addWidget(splitDetailResult)
+
+		self.splitMain.setStretchFactor(0 ,1)
+		self.splitMain.setStretchFactor(1, 1)
+		self.splitMain.setStretchFactor(2, 2)
+		self.splitMain.setStretchFactor(3, 4)
+
+		self.layout.addWidget(self.splitMain)
+
+	def __createWidgetTally(self):
+		self.widgetTally = QWidget()
+		layoutTally = QVBoxLayout()
+		layoutBtn =QHBoxLayout()
+		self.widgetTally.setLayout(layoutTally)
+		self.btnAddTally = QPushButton('افزودن حساب')
+		self.btnDeleteTally = QPushButton('حذف حساب')
+		self.listTally = QListWidget()
+		layoutBtn.addWidget(self.btnAddTally)
+		layoutBtn.addWidget(self.btnDeleteTally)
+		layoutTally.addLayout(layoutBtn)
+		layoutTally.addWidget(self.listTally)
+
+	def __createWidgetPerson(self):
+		self.widgetPerson = QWidget()
+		layoutPerson = QVBoxLayout()
+		layoutBtn =QHBoxLayout()
+		self.widgetPerson.setLayout(layoutPerson)
+		self.btnAddPerson = QPushButton('افزودن شخص')
+		self.btnDeletePerson = QPushButton('حذف شخص')
+		self.stackListPerson = QStackedWidget(self.widget)
+		listPerson = QListWidget()
+		listPerson.setEnabled(False)
+		self.stackListPerson.addWidget(listPerson)
+		layoutBtn.addWidget(self.btnAddPerson)
+		layoutBtn.addWidget(self.btnDeletePerson)
+		layoutPerson.addLayout(layoutBtn)
+		layoutPerson.addWidget(self.stackListPerson)
+
+	def __createWidgetMeet(self):
+		self.widgetMeet = QWidget()
+		layoutMeet = QVBoxLayout()
+		layoutBtn =QHBoxLayout()
+		self.widgetMeet.setLayout(layoutMeet)
+		self.btnAddMeet = QPushButton('افزودن قرار')
+		self.btnDeleteMeet = QPushButton('حذف قرار')
+		self.stackListMeet = QStackedWidget(self.widget)
+		listMeet = QListWidget()
+		listMeet.setEnabled(False)
+		self.stackListMeet.addWidget(listMeet)
+		layoutBtn.addWidget(self.btnAddMeet)
+		layoutBtn.addWidget(self.btnDeleteMeet)
+		layoutMeet.addLayout(layoutBtn)
+		layoutMeet.addWidget(self.stackListMeet)
+
+	def __createWidgetRecord(self):
+		self.widgetRecord = QWidget()
+		layoutRecord = QVBoxLayout()
+		layoutBtn =QHBoxLayout()
+		self.widgetRecord.setLayout(layoutRecord)
+		self.btnAddRecord = QPushButton('افزودن رکورد')
+		self.btnDeleteRecord = QPushButton('حذف رکورد')
+		self.stackListRecord = QStackedWidget(self.widget)
+		listRecord = QListWidget()
+		listRecord.setEnabled(False)
+		self.stackListRecord.addWidget(listRecord)
+		layoutBtn.addWidget(self.btnAddRecord)
+		layoutBtn.addWidget(self.btnDeleteRecord)
+		layoutRecord.addLayout(layoutBtn)
+		layoutRecord.addWidget(self.stackListRecord)
+
+	def __createWidgetDebt(self):
+		self.widgetDebt = QWidget()
+		layoutDebt = QVBoxLayout()
+		layoutBtn =QHBoxLayout()
+		self.widgetDebt.setLayout(layoutDebt)
+		self.btnAddDebt = QPushButton('افزودن بدهی')
+		self.btnDeleteDebt = QPushButton('حذف بدهی')
+		self.stackListDebt = QStackedWidget(self.widget)
+		listDebt = QListWidget()
+		listDebt.setEnabled(False)
+		self.stackListDebt.addWidget(listDebt)
+		layoutBtn.addWidget(self.btnAddDebt)
+		layoutBtn.addWidget(self.btnDeleteDebt)
+		layoutDebt.addLayout(layoutBtn)
+		layoutDebt.addWidget(self.stackListDebt)
+
+	def __createWidgetDetail(self):
+		self.widgetDetail = QWidget()
+		layoutDetail = QVBoxLayout()
+		self.widgetDetail.setLayout(layoutDetail)
+		self.stackListDetail = QStackedWidget(self.widget)
+		detailRecord = QTableWidget()
+		detailRecord.setColumnCount(4)
+		detailRecord.setRowCount(20)
+		detailRecord.setEnabled(False)
+		self.stackListDetail.addWidget(detailRecord)
+		layoutDetail.addWidget(self.stackListDetail)
+
+	def __createWidgetResult(self):
+		self.widgetResult = QWidget()
+		layoutResult = QVBoxLayout()
+		self.widgetDetail.setLayout(layoutResult)
+		self.stackListResult = QStackedWidget(self.widget)
+		result = QTextBrowser()
+		self.stackListResult.addWidget(result)
+		layoutResult.addWidget(self.stackListResult)
+
+if __name__ == '__main__':
+	app = QApplication(sys.argv)
+	widgets = Widgets()
+	sys.exit(app.exec_())
