@@ -3,3 +3,6 @@ __pycache__
 .vscode
 .$UML.drawio.bkp
 .xdp-.$UML.drawio.bkp-qcjBqr
+linkUI_old.py
+mainMenu_old.py
+widgetAccess_old.py
